@@ -1,20 +1,22 @@
 module.exports = [
   {
-    username: 'joeSmith',
-    password: 'bananas',
-    sex: 'M'
+    userName: 'Joe Smith',
+    userEmail: 'joesmith@gmail.com'
   },
 
   {
-    username: 'aliceNam',
-    password: 'apples',
-    sex: 'F'
+    userName: 'Alice Nam',
+    userEmail: 'alicenam@gmail.com'
   },
 
   {
-    username: 'kobeBryant',
-    password: 'oranges',
-    sex: 'M'
+    userName: 'Kobe Bryant',
+    userEmail: 'kobebryant@lakers.com'
+  },
+
+  {
+    userName: 'Example Test',
+    userEmail: 'example@test.com'
   }
 
 ]

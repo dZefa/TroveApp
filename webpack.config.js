@@ -24,29 +24,13 @@ webpackConfig.module.loaders.push({
 
 webpackConfig.module.loaders.push({
   test: /\.(css)$/,
-  loaders: ['style-loader', 'css-loader'],
+  loaders: ['style-loader', 'css-loader?url=false']
 });
 
-// webpackConfig.module.loaders.push({
-//   rules: [
-//     {
-//       test: /\.(png|jpg|gif)$/,
-//       use: [
-//         {
-//           loader: 'file-loader',
-//           options: {}  
-//         }
-//       ]
-//     }
-//   ]
-// });
-
 webpackConfig.module.loaders.push({
-  test: /\.(png|jpg|gif)$/,
+  test: /\.(png|jpg|gif|jpeg)$/,
   loader: 'file-loader',
   options: {}  
 });
-
-
 
 module.exports = webpackConfig;
