@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Loading from './Loading';
+import Loading from '../../components/Loading';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 class SearchResultItem extends Component {

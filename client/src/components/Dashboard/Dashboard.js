@@ -5,7 +5,7 @@ import { BrowserRouter, NavLink, Route, Link } from 'react-router-dom';
 import Wardrobe from './Wardrobe';
 import Archive from './Archive';
 import AccountInfo from './AccountInfo';
-import Loading from './Loading';
+import Loading from '../../components/Loading';
 
 class Dashboard extends Component {
 

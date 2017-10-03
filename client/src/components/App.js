@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { HashRouter, BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import axios from 'axios';
-import NavBar from './NavBar';
-import Home from './Home';
-import Men from './Men';
-import Women from './Women';
+import NavBar from './NavBar/NavBar';
+import Home from './Home/Home';
+import Men from './Men/Men';
+import Women from './Women/Women';
 import Login from './Login';
 import Footer from './Footer';
-import Dashboard from './Dashboard';
-import Wardrobe from './Wardrobe';
+import Dashboard from './Dashboard/Dashboard';
+import Wardrobe from './Dashboard/Wardrobe';
 import firebase, {auth} from '../firebase';
-import Item from './Item';
-import SearchResult from './SearchResult';
-import UserWardrobe from './UserWardrobe';
+import Item from './Home/Item';
+import SearchResult from './Search/SearchResult';
+import UserWardrobe from './UserWardrobe/UserWardrobe';
 
 class App extends Component {
   constructor(props) {

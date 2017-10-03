@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Modal, ModalManager, Effect } from 'react-dynamic-modal';
 import Upload from './Upload';
-import Loading from './Loading';
+import Loading from '../../components/Loading';
 import WardrobeItem from './WardrobeItem';
 
 class Wardrobe extends Component {

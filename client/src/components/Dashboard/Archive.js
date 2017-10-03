@@ -1,7 +1,7 @@
 // This component will display logged user's history of rented items
 import React, { Component } from 'react';
 import axios from 'axios';
-import Loading from './Loading';
+import Loading from '../../components/Loading';
 import ArchiveItem from './ArchiveItem';
 
 class Archive extends Component {
