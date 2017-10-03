@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import WomenItem from './WomenItem';
-import Loading from './Loading';
+import MenItem from './MenItem';
+import Loading from '../../components/Loading';
 
-class Women extends Component {
+class Men extends Component {
   constructor(props) {
     super(props);
   }
@@ -11,16 +11,16 @@ class Women extends Component {
     return (
       <div className='list-section'>
         <div className='list-section-title'>
-          <span>WOMEN</span>
+          <span>MEN</span>
         </div>
         <div className='row'>
           {!this.props.passItems ? <Loading /> : this.props.passItems.map(item => 
-            { if(item.sex === 'F') {
-              return <WomenItem 
+            { if(item.sex === 'M') {
+              return <MenItem 
               passItem={item} 
               addToCart={this.props.addToCart} 
               checkUser={this.props.checkUser}
-              key={item.id}/>}
+              key={item.id} />}
             }
           ).reverse()}
         </div>
@@ -29,4 +29,4 @@ class Women extends Component {
   }
 }
 
-export default Women;
+export default Men;
