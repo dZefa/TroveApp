@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class AccountInfo extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const { user } = this.props;
+
     return (
       <div>
         <div className='account-info-title'>
           <span>
-            Hello {this.props.sqlUser.userName}
+            Hello {user.userName}
           </span>
         </div>
         <br/>
@@ -24,12 +31,12 @@ class AccountInfo extends Component {
         <div className='account-info'>
           <div>
             <span>
-              {this.props.sqlUser.userName}
+              {user.userName}
             </span>
           </div>
           <div>
             <span>
-              {this.props.sqlUser.userEmail}
+              {user.userEmail}
             </span>
           </div>
         </div>
@@ -38,4 +45,10 @@ class AccountInfo extends Component {
   }
 }
 
-export default AccountInfo;
+const accountInfoState = (store) => {
+  return {
+    user: this.props.userObj, // UPDATE THIS WHEN AUTH REDUX IS DONE
+  }
+}
+
+export default connect(accountInfoState, null)(AccountInfo);
