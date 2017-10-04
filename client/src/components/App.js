@@ -115,10 +115,10 @@ class App extends Component {
   }
 
   render() {
-    const { cartActions } = this.props;
+    const { cartActions, history } = this.props;
 
     return (
-      <Router>
+      <Router history={history}>
         <div>
           <div>
             <NavBar />
@@ -130,10 +130,10 @@ class App extends Component {
             <Route exact path='/men' component={() => (
               <Men items={items} addToCart={cartActions.addToCart} checkUser={/*Fill in when done*/} />)} />
             <Route exact path='/women' component={() => (
-              <Women items={items} addToCart={cartActions.addToCart} checkUser={/*Fill in when done*/}/>)} />
-            <Route exact path='/account' component={() => (<Dashboard />)} />
-            <Route exact path='/wardrobe' component={() => (<Dashboard />)} />
-            <Route exact path='/archive' component={() => (<Dashboard />)} />
+              <Women />)} />
+            <Route exact path='/account' component={() => (<Dashboard history={history} />)} />
+            <Route exact path='/wardrobe' component={() => (<Dashboard history={history} />)} />
+            <Route exact path='/archive' component={() => (<Dashboard history={history} />)} />
             <Route exact path='/login' component={() => (<Login />)} />
             <Route exact path='/item/:item_id' component={Item} />
             <Route exact path='/search' component={() => (<SearchResult results={results} addToCart={cartActions.addToCart}/>)} />
