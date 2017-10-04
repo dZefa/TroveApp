@@ -14,7 +14,7 @@ const TroveReducer = combineReducers({
   Search,
   // UserWardrobe,
   // Footer,
-  // routing: routerReducer,
+  routing: routerReducer,
 });
 
 export default TroveReducer;
