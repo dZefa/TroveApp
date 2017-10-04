@@ -1,4 +1,4 @@
-initialState = {
+const initialState = {
   cart: [],
   viewCart: false,
 };
