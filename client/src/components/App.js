@@ -262,9 +262,9 @@ class App extends Component {
               passItems={this.state.allItems} 
               addToCart={this.handleAddToCart}
               checkUser={this.handleCheckUser} />)} />
-            <Route exact path='/account' component={() => (<Dashboard sqlUser={this.state.sqlUser} passItems={this.state.allItems}/>)} />
-            <Route exact path='/wardrobe' component={() => (<Dashboard sqlUser={this.state.sqlUser} passItems={this.state.allItems}/>)} />
-            <Route exact path='/archive' component={() => (<Dashboard sqlUser={this.state.sqlUser} passItems={this.state.allItems}/>)} />
+            <Route exact path='/account' component={() => (<Dashboard />)} />
+            <Route exact path='/wardrobe' component={() => (<Dashboard />)} />
+            <Route exact path='/archive' component={() => (<Dashboard />)} />
             <Route exact path='/login' component={() => (<Login authenticated={this.state.authenticated} login={this.authWithEmailPassword} signUp={this.signUp}/>)} />
             <Route exact path='/item/:item_id' component={Item} />
             <Route exact path='/search' component={() => (
