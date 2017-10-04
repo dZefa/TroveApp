@@ -32,17 +32,17 @@ class App extends Component {
       userId: null
 
     }
-    this.fetch = this.fetch.bind(this);
-    this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
-    this.signUp = this.signUp.bind(this);
-    this.logout = this.logout.bind(this);
-    this.handleAddToCart = this.handleAddToCart.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-    this.search = this.search.bind(this);
-    this.removeFromCart = this.removeFromCart.bind(this);
-    this.handleCheckUser = this.handleCheckUser.bind(this);
+    // this.fetch = this.fetch.bind(this);
+    // this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
+    // this.signUp = this.signUp.bind(this);
+    // this.logout = this.logout.bind(this);
+    // this.handleAddToCart = this.handleAddToCart.bind(this);
+    // this.handleSearch = this.handleSearch.bind(this);
+    // this.search = this.search.bind(this);
+    // this.removeFromCart = this.removeFromCart.bind(this);
+    // this.handleCheckUser = this.handleCheckUser.bind(this);
 
-    this.showCart = this.showCart.bind(this);
+    // this.showCart = this.showCart.bind(this);
   }
 
   handleCheckUser(num) {
