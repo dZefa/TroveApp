@@ -48,7 +48,7 @@ const Item = db.define('Item', {
     allowNull: false
   },
   tag: {
-    type: Sequelize.STRING,
+    type: Sequelize.ARRAY({type: Sequelize.STRING}),
     allowNull: true
   },
   status: {
