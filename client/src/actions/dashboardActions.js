@@ -11,3 +11,15 @@ export const fetchTrx = (userId) => {
       });
   };
 };
+
+export const postItem = (item) => {
+  return function(dispatch) {
+    axios.post('/api', item)
+      .then(() => {
+        dispatch({type: "POST_ITEM_FULFILLED"});
+      })
+      .catch(err => {
+        dispatch({type: "POST_ITEM_REJECTED", payload: err});
+      });
+  };
+};
