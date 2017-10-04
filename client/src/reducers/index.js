@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 
 import Item from './itemsReducer';
 import Dashboard from './dashboardReducers';
+import Search from './searchReducer'
 
 const TroveReducer = combineReducers({
   // NavBar,
@@ -10,7 +11,7 @@ const TroveReducer = combineReducers({
   Item,
   Dashboard,
   // Login,
-  // SearchResult,
+  Search,
   // UserWardrobe,
   // Footer,
   // routing: routerReducer,
