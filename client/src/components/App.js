@@ -130,7 +130,7 @@ class App extends Component {
             <Route exact path='/' component={() => (
               <Home />)} />
             <Route exact path='/men' component={() => (
-              <Men items={items} addToCart={cartActions.addToCart} checkUser={/*Fill in when done*/} />)} />
+              <Men />)} />
             <Route exact path='/women' component={() => (
               <Women />)} />
             <Route exact path='/account' component={() => (<Dashboard history={history} />)} />
