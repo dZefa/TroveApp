@@ -5,6 +5,7 @@ import { routerReducer } from 'react-router-redux';
 const TroveReducer = combineReducers({
   NavBar,
   Home,
+  Item,
   Men,
   Women,
   Dashboard,
