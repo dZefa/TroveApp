@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserWardrobeItem from './UserWardrobeItem';
+import { connect } from 'react-redux';
 
 class UserWardrobe extends Component {
   constructor(props) {

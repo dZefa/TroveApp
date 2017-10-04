@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import moment from 'moment'
 

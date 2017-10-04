@@ -5,15 +5,15 @@ import Item from './itemsReducer';
 import Dashboard from './dashboardReducers';
 
 const TroveReducer = combineReducers({
-  NavBar,
-  Home,
+  // NavBar,
+  // Home,
   Item,
   Dashboard,
-  Login,
-  SearchResult,
-  UserWardrobe,
-  Footer,
-  routing: routerReducer,
+  // Login,
+  // SearchResult,
+  // UserWardrobe,
+  // Footer,
+  // routing: routerReducer,
 });
 
 export default TroveReducer;

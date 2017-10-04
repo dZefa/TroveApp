@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Loading from './Loading';
+import Loading from '../Loading';
 import ArchiveItem from './ArchiveItem';
 
 import * as dashboardActions from '../../actions/dashboardActions';
