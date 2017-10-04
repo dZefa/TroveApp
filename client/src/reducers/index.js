@@ -8,8 +8,6 @@ const TroveReducer = combineReducers({
   NavBar,
   Home,
   Item,
-  Men,
-  Women,
   Dashboard,
   Login,
   SearchResult,
