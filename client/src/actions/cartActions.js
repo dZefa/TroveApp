@@ -12,6 +12,10 @@ export const showCart = () => {
   dispatch({type: 'SHOW_CART'});
 }
 
+export const hideCart = () => {
+  dispatch({type: 'HIDE_CART'});
+}
+
 export const emptyCart = () => {
   dispatch({type: 'EMPTY_CART'});
 }
