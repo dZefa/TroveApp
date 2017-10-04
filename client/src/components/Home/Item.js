@@ -117,7 +117,19 @@ class Item extends Component {
               {tags} 
             </ul>
             <div className='item-btn'>
-              <button className='btn btn-block item-btn-color' onClick={() => this.props.location.params.addToCart(this.props.itemInfo, this.props.startDate, this.props.state.endDate)} type="button">Add to Cart</button>
+              <button className='btn btn-block item-btn-color' 
+                onClick={() => {
+                  if(startDate === nul || endDate === null) {
+                    for(let i = 0; i < cart.length; i++) {
+                      if(item.id === cart[i].id) {
+                        return alert('You already have this item in your cart');
+                      }
+                    }
+                    actions.addToCart(item, startDate, endDate);
+                  }
+                }}
+                type="button"
+              >Add to Cart</button>
             </div>
           </div>
         </div>
