@@ -126,13 +126,13 @@ class Item extends Component {
 
 const mapState = (store) => {
   return {
-    startDate: null,
-    endDate: null,
-    focusedInput: null,
-    minimumNights: 7,
-    daySize: 30,
-    itemInfo: this.props.location.params.itemInfo,
-    userInfo: this.props.location.params.checkUser,
+    startDate: store.item.startDate,
+    endDate: store.item.endDate,
+    focusedInput: store.item.focusedInput,
+    minimumNights: store.item.minimumNights,
+    daySize: store.item.daySize,
+    itemInfo: store.item.itemInfo,
+    userInfo: store.item.checkUser,
     owner: '',
     blockedDates: []
   }
