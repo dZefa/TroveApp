@@ -86,7 +86,8 @@ User.hasMany(Item, { foreignKey: { name: 'rentee_id' }, onDelete: 'CASCADE' })
 Item.belongsTo(User, { foreignKey: { name: 'rentee_id' }, onDelete: 'CASCADE' })
 
 // Item.hasOne(Rent_trx, {foreignKey: {name: 'item_id'}, onDelete: 'CASCADE'})
-Item.hasOne(Rent_trx, {foreignKey: {name: 'item_id'}, onDelete:'CASCADE'})
+Item.hasMany(Rent_trx, {foreignKey: {name: 'item_id'}, onDelete:'CASCADE'})
+Rent_trx.belongsTo(Item, {foreignKey: {name: 'item_id'}, onDelete:'CASCADE'})
 // User.hasOne(Rent_trx, {foreignKey: {name: 'renter_id'}, onDelete:'CASCADE'})
 // User.hasOne(Rent_trx, {foreignKey: {name: 'rentee_id'}, onDelete:'CASCADE'})
 
@@ -94,13 +95,13 @@ Item.hasOne(Rent_trx, {foreignKey: {name: 'item_id'}, onDelete:'CASCADE'})
 db.sync();
 
 // Seeding
-db.sync({force: true})
-.then(() => seed(User, userData, "User"))
-.then(() => seed(Item, itemData, "Item"))
-.then(() => seed(Rent_trx, rentedData, "Rent_trx"))
-.catch(err => {
-    console.log('seeding error in model')
-})
+// db.sync({force: true})
+// .then(() => seed(User, userData, "User"))
+// .then(() => seed(Item, itemData, "Item"))
+// .then(() => seed(Rent_trx, rentedData, "Rent_trx"))
+// .catch(err => {
+//     console.log('seeding error in model')
+// })
 
 module.exports = {
   User,
