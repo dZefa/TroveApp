@@ -1,6 +1,6 @@
 import firebase, { auth } from '../firebase.js';
 
-export const emailSignUp = (email, pw) => {
+export const emailLogin = (email, pw) => {
   return function(dispatch) {    
     auth.signInWithEmailAndPassword(email, pw)
     .then((result) => {
@@ -12,7 +12,7 @@ export const emailSignUp = (email, pw) => {
           localStorage.setItem('sqlUser', data)
           dispatch({type: 'USER_LOGIN_FULFILLED', payload: result.email});
           // what's home?
-          dispatch(push('/api'));
+          dispatch(push('/'));
         })
         .catch(function(error) {
           alert(error.message);        
@@ -40,3 +40,30 @@ export const logout = () => {
         dispatch({type: 'USER_LOGIN_REJECTED', payload: error.message});
       });
 };
+
+export const emailSignup = (email, pw) => {
+  auth.createUserWithEmailAndPassword(newEmail, pw)
+  .then((result) => {
+    axios.post('/api/user', {
+      userName: newName,
+      userEmail: newEmail
+    })
+    .then(({data}) => {
+      localStorage.setItem('authenticated', true),
+      localStorage.setItem('user', result),
+      localStorage.setItem('sqlUser', data)
+      alert('Account successfully created!')
+      dispatch({type: 'USER_LOGIN_FULFILLED', payload: result.email});
+      // what's home?
+      dispatch(push('/'));
+    })
+    .catch(err => {
+      alert(err.message);
+      dispatch({type: 'USER_LOGIN_REJECTED', payload: error.message});
+    })
+  })
+  .catch(err => {
+    alert(err.message);
+    dispatch({type: 'USER_LOGIN_REJECTED', payload: error.message});
+  })
+}
