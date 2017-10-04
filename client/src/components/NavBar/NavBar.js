@@ -17,6 +17,21 @@ class NavBar extends Component {
     return Math.floor(totalPrice * 0.07);
   }
 
+  search() {
+    const res = [];
+    const clone = this.state.allItems;
+    const split = this.state.searchInput.split(' ');
+    for (let i = 0; i < clone.length; i++) {
+      for (let j = 0; j < split.length; j++) {
+        let checkThis = split[j].toLowerCase();
+        if (clone[i].itemname.toLowerCase().includes(checkThis)) {
+          res.push(clone[i]);
+        }
+      }
+    }
+    this.state.searchRes = res;
+  }
+
   render() {
     console.log('this is nav cart: ', this.props)
     return (
@@ -41,10 +56,9 @@ class NavBar extends Component {
               </li>
             </ul>
             <form className="form-inline my-2 my-lg-0 search-section">
-              <input className="form-control mr-sm-2 input-sm" type="text" placeholder="Search"
-              onChange = { (e) => {this.props.passHandleInput(e.target.value) }}></input>
+              <input className="form-control mr-sm-2 input-sm" type="text" placeholder="Search" id="searchInput" />
               <NavLink exact activeClassName="active" to='/search'
-              onClick = { () => {this.props.passSearch()}} >
+              onClick = { () => {this.search()}} >
               <button className="btn btn-outline-success my-2 my-sm-0 btn-sm nav-btn-color nav-btn-section" type="submit"
               onClick = { () => {this.search() }} ><i className="material-icons nav-search-btn">search</i></button>
               </NavLink>
