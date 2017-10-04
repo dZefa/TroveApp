@@ -7,57 +7,57 @@ import moment from 'moment'
 class Item extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      startDate: null,
-      endDate: null,
-      focusedInput: null,
-      minimumNights: 7,
-      daySize: 30,
-      itemInfo: this.props.location.params.itemInfo,
-      userInfo: this.props.location.params.checkUser,
-      owner: '',
-      blockedDates: []
-    }
-    this.fetchUser = this.fetchUser.bind(this);
+    // this.state = {
+    //   startDate: null,
+    //   endDate: null,
+    //   focusedInput: null,
+    //   minimumNights: 7,
+    //   daySize: 30,
+    //   itemInfo: this.props.location.params.itemInfo,
+    //   userInfo: this.props.location.params.checkUser,
+    //   owner: '',
+    //   blockedDates: []
+    // }
+    // this.fetchUser = this.fetchUser.bind(this);
   }
 
   componentDidMount() {
-    this.fetchDates();
-    this.fetchUser();
-    this.state.userInfo(this.state.itemInfo.rentee_id);
+    this.props.actions.fetchDates(this.props.itemInfo);
+    this.props.actions.fetchUser(this.props.itemInfo);
+    this.props.userInfo(this.props.itemInfo.rentee_id);
   }
 
-  fetchUser() {
-    axios.get(`/api/user/owner/${this.state.itemInfo.rentee_id}`)
-    .then(user => {
-      this.setState({ owner: user.data.userName });
-    })
-    .catch(err => {
-      console.log('User fetch err:', err);
-    })
-  }
+  // fetchUser() {
+  //   axios.get(`/api/user/owner/${this.state.itemInfo.rentee_id}`)
+  //   .then(user => {
+  //     this.setState({ owner: user.data.userName });
+  //   })
+  //   .catch(err => {
+  //     console.log('User fetch err:', err);
+  //   })
+  // }
   
-  fetchDates() {
-    var blockedDates = [];
-    axios.get(`/api/renttrx/item/${this.state.itemInfo.id}`)
-    .then(({data}) => data.forEach(item => {
-    //   console.log('items', item)
-    // }))
-      blockedDates.push(item.startDate);
-      blockedDates.push(item.endDate);
-    }))
-    .then(() => {
-      this.setState({
-        blockedDates: blockedDates
-      })
-    })
-    .catch(err => {
-      console.log('an error occured', err);
-    })
-  }
+  // fetchDates() {
+  //   var blockedDates = [];
+  //   axios.get(`/api/renttrx/item/${this.state.itemInfo.id}`)
+  //   .then(({data}) => data.forEach(item => {
+  //   //   console.log('items', item)
+  //   // }))
+  //     blockedDates.push(item.startDate);
+  //     blockedDates.push(item.endDate);
+  //   }))
+  //   .then(() => {
+  //     this.setState({
+  //       blockedDates: blockedDates
+  //     })
+  //   })
+  //   .catch(err => {
+  //     console.log('an error occured', err);
+  //   })
+  // }
 
   render() {
-    let allTags = JSON.parse(this.state.itemInfo.tag);
+    let allTags = JSON.parse(this.props.itemInfo.tag);
     
     let tags = allTags.map((tag, i) => {
       return (
@@ -65,7 +65,7 @@ class Item extends Component {
       )
     });
 
-    let badDates = this.state.blockedDates;
+    let badDates = this.props.blockedDates;
     const isDayBlocked = function(day) {
       for (var i = 0; i < badDates.length; i += 2) {
         if (moment(day).isBetween(badDates[i], badDates[i + 1], 'day', '[]')) {
@@ -78,37 +78,37 @@ class Item extends Component {
     return (
         <div className='row'>
           <div className='col-md-5 item-image-section'>
-            <img src={this.state.itemInfo.image} />
+            <img src={this.props.itemInfo.image} />
           </div>
           <div className='col-md-5 item-info-section'>
             <div className='item-brand'>
-              <span> {this.state.itemInfo.brand} </span>
+              <span> {this.props.itemInfo.brand} </span>
             </div>
             <div className='item-title'>
-              <span> {this.state.itemInfo.itemname} </span>
+              <span> {this.props.itemInfo.itemname} </span>
             </div>
             <Link className='item-user' to='/userwardrobe'>
-              By: {this.state.owner}
+              By: {this.props.owner}
             </Link>
             <hr className="col-md-12"></hr>
             <div className='item-price'>
-              <span className='line-through list-price-retail'> ${this.state.itemInfo.price} </span>
-              <span> ${Math.floor(this.state.itemInfo.price * 0.07)} </span>
+              <span className='line-through list-price-retail'> ${this.props.state.itemInfo.price} </span>
+              <span> ${Math.floor(this.props.itemInfo.price * 0.07)} </span>
             </div>
             <div className='item-size'>
-              <span> {this.state.itemInfo.size} </span>
+              <span> {this.props.itemInfo.size} </span>
             </div>
             
             <div className='item-calendar'>
               <DateRangePicker
                 isDayBlocked={isDayBlocked}
-                daySize={this.state.daySize}
-                minimumNights={this.state.minimumNights}
-                startDate={this.state.startDate} 
-                endDate={this.state.endDate} 
-                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} 
-                focusedInput={this.state.focusedInput} 
-                onFocusChange={focusedInput => this.setState({ focusedInput })} 
+                daySize={this.props.daySize}
+                minimumNights={this.props.minimumNights}
+                startDate={this.props.startDate} 
+                endDate={this.props.endDate} 
+                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} //?? 
+                focusedInput={this.props.focusedInput} 
+                onFocusChange={focusedInput => this.setState({ focusedInput })}  //???
                 />
             </div>
             <ul className='item-tags'>
@@ -116,7 +116,7 @@ class Item extends Component {
               {tags} 
             </ul>
             <div className='item-btn'>
-              <button className='btn btn-block item-btn-color' onClick={() => this.props.location.params.addToCart(this.state.itemInfo, this.state.startDate, this.state.endDate)} type="button">Add to Cart</button>
+              <button className='btn btn-block item-btn-color' onClick={() => this.props.location.params.addToCart(this.props.itemInfo, this.props.startDate, this.props.state.endDate)} type="button">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -124,4 +124,25 @@ class Item extends Component {
   }
 }
 
-export default Item;
+const mapState = (store) => {
+  return {
+    startDate: null,
+    endDate: null,
+    focusedInput: null,
+    minimumNights: 7,
+    daySize: 30,
+    itemInfo: this.props.location.params.itemInfo,
+    userInfo: this.props.location.params.checkUser,
+    owner: '',
+    blockedDates: []
+  }
+};
+
+const mapDispatch = (dispatch) => {
+  return {
+    actions: bindActionCreators(itemActions, dispatch)
+  }
+};
+
+
+export default connect(mapState, mapDispatch)(Item);
