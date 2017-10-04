@@ -7,7 +7,7 @@ class SearchResult extends Component {
       <div className='list-section'>
         <div className='row'>
           {this.props.results.map(item => 
-              <SearchResultItem item={item} key={item.id} />
+              <SearchResultItem item={item} key={item.id} addToCart={this.props.addToCart}/>
           ).reverse()}
         </div>
       </div>
