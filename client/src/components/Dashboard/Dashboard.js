@@ -9,7 +9,7 @@ import Archive from './Archive';
 import AccountInfo from './AccountInfo';
 import Loading from '../../components/Loading';
 
-import * as dashboardActions from '../actions/dashboardActions'; // DELETE THIS IF NOT USING
+import * as dashboardActions from '../../ctions/dashboardActions'; // DELETE THIS IF NOT USING
 
 class Dashboard extends Component {
   constructor(props) {

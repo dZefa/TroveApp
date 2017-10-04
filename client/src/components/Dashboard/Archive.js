@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import Loading from './Loading';
 import ArchiveItem from './ArchiveItem';
 
-import * as dashboardActions from '../actions/dashboardActions';
+import * as dashboardActions from '../../actions/dashboardActions';
 
 class Archive extends Component {
   constructor(props) {
