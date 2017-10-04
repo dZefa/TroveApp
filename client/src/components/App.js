@@ -96,39 +96,39 @@ class App extends Component {
     const userData = null;
     const authDomain = firebase.auth();
 
-    auth.signInWithEmailAndPassword(email, pw)
-      .then((result) => {
-        console.log('logged in')
-        axios.get(`/api/user/${email}`)
-        .then(({data}) => {
-          this.setState({
-            authenticated: true,
-            user: result,
-            sqlUser: data
-          })
-        })
-        .catch(err => console.log('error in axios: ', err.message));
-      })
-      .catch(err => alert(err.message));
+    // auth.signInWithEmailAndPassword(email, pw)
+    //   .then((result) => {
+    //     console.log('logged in')
+    //     axios.get(`/api/user/${email}`)
+    //     .then(({data}) => {
+    //       this.setState({
+    //         authenticated: true,
+    //         user: result,
+    //         sqlUser: data
+    //       })
+    //     })
+    //     .catch(err => console.log('error in axios: ', err.message));
+    //   })
+    //   .catch(err => alert(err.message));
 
     document.getElementById('txtEmail').value = '';
     document.getElementById('txtPassword').value = '';
   }
 
-  logout() {
-    auth.signOut()
-      .then(() => {
-        console.log('signed out')
-        this.setState({
-          authenticated: false,
-          user: null,
-          sqlUser: null,
-          cart: localStorage.setItem('cart', JSON.stringify([]))
-        })
-        console.log('state on logout: ', this.state);        
-      })
-      .catch(err => alert(err.message));
-  }
+  // logout() {
+  //   auth.signOut()
+  //     .then(() => {
+  //       console.log('signed out')
+  //       this.setState({
+  //         authenticated: false,
+  //         user: null,
+  //         sqlUser: null,
+  //         cart: localStorage.setItem('cart', JSON.stringify([]))
+  //       })
+  //       console.log('state on logout: ', this.state);        
+  //     })
+  //     .catch(err => alert(err.message));
+  // }
 
   //Sign up
   signUp () {
