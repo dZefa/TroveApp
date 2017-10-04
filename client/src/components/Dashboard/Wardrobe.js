@@ -1,23 +1,36 @@
 // This component will display logged user's items for rent
 import React, { Component } from 'react';
-import { Modal, ModalManager, Effect } from 'react-dynamic-modal';
+import { Modal, Effect } from 'react-dynamic-modal';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import Upload from './Upload';
-import Loading from '../../components/Loading';
 import WardrobeItem from './WardrobeItem';
 
 class Wardrobe extends Component {
-
-  openModal() {
-    ModalManager.open(<Upload onRequestClose={() => true} passUser={this.props.passUser} />);
+  constructor(props) {
+    super(props);
   }
 
   render() {
+    const { user, items } = this.props;
     return (
       <div>
-        <div className='upload-btn-section'><button className="btn wardrobe-btn-color" type="button" onClick={this.openModal.bind(this)}> Add to Wardrobe </button> </div>
+        <div className='upload-btn-section'>
+          <button 
+            className="btn wardrobe-btn-color" 
+            type="button" 
+            onClick={() => {
+              ModalManager.open(
+                <Upload onRequestClose={() => true} />
+              )
+            }}
+          > Add to Wardrobe 
+          </button> 
+        </div>
         <div className='row'>
-          {this.props.passItems.map(item => 
-            { if(item.rentee_id === this.props.passUser.id) {
+          {items.map(item => 
+            { if(item.rentee_id === user.id) {
               return <WardrobeItem passItem={item} key={item.id} /> }
             }
           ).reverse()}
@@ -27,4 +40,11 @@ class Wardrobe extends Component {
   }
 }
 
-export default Wardrobe;
+const wardrobeState = (store) => {
+  return {
+    user: this.props.user, // UPDATE THIS WHEN AUTH REDUX IS DONE
+    items: this.props.items // UPDATE THIS WHEN ITEMS REDUX IS DONE
+  };
+};
+
+export default connect(wardrobeState, null)(Wardrobe);

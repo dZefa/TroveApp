@@ -1,17 +1,26 @@
 // This component will display logged in user's account info
 // Will also route to other user-specific pages (wardrobe, history)
 import React, { Component } from 'react';
-import { BrowserRouter, NavLink, Route, Link } from 'react-router-dom';
+import { Router, NavLink, Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import Wardrobe from './Wardrobe';
 import Archive from './Archive';
 import AccountInfo from './AccountInfo';
 import Loading from '../../components/Loading';
 
+import * as dashboardActions from '../../ctions/dashboardActions'; // DELETE THIS IF NOT USING
+
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
+    const { user, items } = this.props;
+
     return (
-      <BrowserRouter>
+      <Router>
         <div className='dashboard'>
           <div className='col-md-3'>
             <div className='dashboard-wrap my-account-section'>
@@ -37,17 +46,23 @@ class Dashboard extends Component {
                 <span>MY DASHBOARD</span>
               </div>
               <div>
-                {!this.props.sqlUser ? <Loading /> : <Route exact path='/account' component={() => (<AccountInfo sqlUser={this.props.sqlUser} />)} /> }
-                {!this.props.sqlUser || !this.props.passItems ? <Loading /> : <Route path='/wardrobe' component={() => (<Wardrobe passUser={this.props.sqlUser}
-                  passItems={this.props.passItems} />)} />}
-                {!this.props.sqlUser ? <Loading /> : <Route exact path='/archive' component={() => (<Archive sqlUser={this.props.sqlUser} />)} /> }                  
+                {!user ? <Loading /> : <Route exact path='/account' component={() => (<AccountInfo />)} /> }
+                {!user || !items ? <Loading /> : <Route path='/wardrobe' component={() => (<Wardrobe />)} />}
+                {!user ? <Loading /> : <Route exact path='/archive' component={() => (<Archive />)} /> }                  
               </div>
             </div>
           </div>
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
 
-export default Dashboard;
+const dashboardState = (store) => {
+  return {
+    user: this.props.sqlUser, // UPDATE THIS WHEN AUTH-REDUX IS DONE
+    items: this.props.allitems // UPDATE THIS WHEN ITEM-REDUX IS DONE
+  };
+};
+
+export default connect(dashboardState, null)(Dashboard);

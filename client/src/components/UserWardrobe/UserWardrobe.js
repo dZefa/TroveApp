@@ -1,39 +1,22 @@
 import React, { Component } from 'react';
 import UserWardrobeItem from './UserWardrobeItem';
-import axios from 'axios';
 
 class UserWardrobe extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: ''
-    }
-    this.fetch = this.fetch.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetch();
-  }
-
-  fetch() {
-    axios.get(`/api/user/owner/${this.props.getThisUser}`)
-    .then(user => {
-      this.setState({ name: user.data.userName });
-    })
-    .catch(err => {
-      console.log('User fetch err:', err);
-    })
   }
 
   render() {
+    const { user, items } = this.props;
+
     return (
       <div className='list-section'>
       <div className='list-section-title'>
-          <span>{this.state.name}</span>
+          <span>{user.username}</span>
         </div>
         <div className='row'>
-          {this.props.passItems.map(item => 
-            {if(item.rentee_id === this.props.getThisUser) {
+          {items.map(item => 
+            {if(item.rentee_id === user.id) {
               return <UserWardrobeItem passItem={item} key={item.id} /> }
             }
           ).reverse()}
@@ -43,4 +26,11 @@ class UserWardrobe extends Component {
   }
 }
 
-export default UserWardrobe;
+const userWardrobeState = (store) => {
+  return {
+    user: this.props.user, // UPDATE!
+    items: this.props.items // UPDATE!
+  };
+};
+
+export default connect(userWardrobeState, null)(UserWardrobe);
