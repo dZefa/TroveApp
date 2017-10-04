@@ -20,7 +20,7 @@ class Dashboard extends Component {
     const { user, items } = this.props;
 
     return (
-      <BrowserRouter>
+      <Router>
         <div className='dashboard'>
           <div className='col-md-3'>
             <div className='dashboard-wrap my-account-section'>
@@ -53,7 +53,7 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
