@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Loading from '../../components/Loading';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 class WardrobeItem extends Component {
   constructor(props) {
@@ -9,8 +7,6 @@ class WardrobeItem extends Component {
 
   render() {
     const { passItem } = this.props;
-
-    console.log('this is Wardrobe; ', this.props.passItem);
     
     return (
       <div className='col-md-3 wow fadeIn animated'>

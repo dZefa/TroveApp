@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Upload from './Upload';
-import Loading from '../../components/Loading';
 import WardrobeItem from './WardrobeItem';
 
 class Wardrobe extends Component {
