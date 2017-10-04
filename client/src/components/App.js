@@ -30,7 +30,6 @@ class App extends Component {
       checkThisUser: null,
       viewCart: JSON.parse(localStorage.getItem('viewCart')) || false,
       userId: null
-
     }
     // this.fetch = this.fetch.bind(this);
     // this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
@@ -225,7 +224,6 @@ class App extends Component {
     }
   }
 
-
   render() {
     console.log('this is state in render: ', this.state.cart);
     return (
@@ -291,5 +289,18 @@ class App extends Component {
     );
   }
 }
+
+const appState = (store) => {
+  return {
+    items: this.props.items,
+    
+  };
+};
+
+const appDispatch = (dispatch) => {
+  return {
+
+  };
+};
 
 export default App;
