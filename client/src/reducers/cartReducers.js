@@ -19,7 +19,12 @@ const cartReducer = (state=initialState, action) => {
     }
     case 'SHOW_CART': {
       return Object.assign({}, state, {
-        viewCart: !state.viewCart
+        viewCart: true
+      })
+    }
+    case 'HIDE_CART': {
+      return Object.assign({}, state, {
+        viewCart: false
       })
     }
     case 'EMPTY_CART': {
