@@ -1,8 +1,8 @@
-import { combinedReducers, createStore } from 'redux';
-
 const initialState = {
   fetchedUsers: false,
   fetchedDates: false,
+  fetchedItems: false,
+  items: [],
   error: null,
   owner: '',
   blockedDates: [],
@@ -31,6 +31,20 @@ const itemReducer = (state=initialState, action) => {
         fetchedDates: true,
         blockedDates: action.payload
       })
+    }
+    case "FETCH_ITEMS_REJECTED": {
+      return Object.assign({}, state, {
+        error: action.payload
+      })
+    }
+    case "FETCH_ITEMS_FULFILLED": {
+      return Object.assign({}, state, {
+        fetchedItems: true,
+        items: action.payload
+      })
+    }
+    default: {
+      return state;
     }
   }
 }
