@@ -6,20 +6,20 @@ class SearchResultItem extends Component {
   render() {
     return (
       <div className='col-md-3 wow fadeIn animated'>
-        <Link to={{pathname: `/item/${this.props.passItem.id}`, params: {itemInfo: this.props.passItem, addToCart: this.props.addToCart}}}>
+        <Link to={{pathname: `/item/${this.props.item.id}`, params: {itemInfo: this.props.item, addToCart: this.props.addToCart}}}>
           <div className='list-section-wrap'>
             <div className='list-section-picture'>
-                <img src={this.props.passItem.image} ></img>
+                <img src={this.props.item.image} ></img>
             </div>
             <div className='list-info'>
               <div>
-                {this.props.passItem.brand}
+                {this.props.item.brand}
               </div>
               <div>
-                {this.props.passItem.itemname}
+                {this.props.item.itemname}
               </div>
               <div>
-                ${this.props.passItem.price}
+                ${this.props.item.price}
               </div>
             </div>
           </div>
@@ -28,5 +28,6 @@ class SearchResultItem extends Component {
     );
   }
 }
+
 
 export default SearchResultItem;

@@ -6,8 +6,8 @@ class SearchResult extends Component {
     return (
       <div className='list-section'>
         <div className='row'>
-          {this.props.passRes.map(item => 
-              <SearchResultItem passItem={item} addToCart={this.props.addToCart} key={item.id} />
+          {this.props.results.map(item => 
+              <SearchResultItem item={item} key={item.id} />
           ).reverse()}
         </div>
       </div>

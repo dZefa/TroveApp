@@ -136,7 +136,7 @@ class App extends Component {
             <Route exact path='/archive' component={() => (<Dashboard />)} />
             <Route exact path='/login' component={() => (<Login />)} />
             <Route exact path='/item/:item_id' component={Item} />
-            <Route exact path='/search' component={() => (<SearchResult />)} />
+            <Route exact path='/search' component={() => (<SearchResult results={results} addToCart={cartActions.addToCart}/>)} />
             <Route exact path='/userwardrobe' component={() => (<UserWardrobe />)} />
             <Route render={function() {
 								return (
@@ -156,6 +156,7 @@ class App extends Component {
     );
   }
 }
+
 
 const appDispatch = (dispatch) => {
   return {

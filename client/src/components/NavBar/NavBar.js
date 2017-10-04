@@ -4,6 +4,12 @@ import Checkout from './Checkout';
 import { Scrollbars } from 'react-custom-scrollbars'
 import moment from 'moment';
 
+import * as searchActions from '../../actions/searchActions'
+import * as cartActions from '../../actions/cartActions'
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -17,23 +23,12 @@ class NavBar extends Component {
     return Math.floor(totalPrice * 0.07);
   }
 
-  search() {
-    const res = [];
-    const clone = this.state.allItems;
-    const split = this.state.searchInput.split(' ');
-    for (let i = 0; i < clone.length; i++) {
-      for (let j = 0; j < split.length; j++) {
-        let checkThis = split[j].toLowerCase();
-        if (clone[i].itemname.toLowerCase().includes(checkThis)) {
-          res.push(clone[i]);
-        }
-      }
-    }
-    this.state.searchRes = res;
-  }
-
   render() {
+
+    const searchInput = document.getElementById('searchInput').value; 
+
     console.log('this is nav cart: ', this.props)
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-black">
           <NavLink id='bg-logo' exact className="navbar-brand" to='/' >
@@ -58,9 +53,9 @@ class NavBar extends Component {
             <form className="form-inline my-2 my-lg-0 search-section">
               <input className="form-control mr-sm-2 input-sm" type="text" placeholder="Search" id="searchInput" />
               <NavLink exact activeClassName="active" to='/search'
-              onClick = { () => {this.search()}} >
+              onClick = { () => {searchActions.search(items, searchInput)}} >
               <button className="btn btn-outline-success my-2 my-sm-0 btn-sm nav-btn-color nav-btn-section" type="submit"
-              onClick = { () => {this.search() }} ><i className="material-icons nav-search-btn">search</i></button>
+              onClick = { () => {searchActions.search(items, searchInput) }} ><i className="material-icons nav-search-btn">search</i></button>
               </NavLink>
             </form>
             {/* Check if user logged in */}
@@ -74,16 +69,16 @@ class NavBar extends Component {
                   <NavLink exact activeClassName="active"  className="nav-link nav-title" to='/account' >
                   <i className="fa fa-suitcase cart-icon" aria-hidden="true"></i>ACCOUNT
                   </NavLink>
-                  <NavLink exact activeClassName="active"  className="nav-link nav-title logout" to='/' onClick={() => {this.emptyCart(); this.props.logout() }} >
+                  <NavLink exact activeClassName="active"  className="nav-link nav-title logout" to='/' onClick={() => {this.emptyCart(); this.props.logout() /*update when auth actions finished*/ }} >
                   <i className="fa fa-user cart-icon" aria-hidden="true"></i>LOGOUT
                   </NavLink>
-                    <a className='nav-link nav-title' onClick={() => this.state.cart.length > 0 ? this.props.showCart() : null}>
-                      <i className="fa fa-shopping-cart cart-icon" aria-hidden="true"></i>{this.state.cart.length}
+                    <a className='nav-link nav-title' onClick={() => cart.length > 0 ? cartActions.showCart() : null}>
+                      <i className="fa fa-shopping-cart cart-icon" aria-hidden="true"></i>{cart.length}
                     </a>
-                    <div className={this.props.showCartState ? "cart cart-active" : "cart"}>
+                    <div className={cartActions.showCart ? "cart cart-active" : "cart"}>
                       <div className='col-md-12 cart-section'>
                         <Scrollbars autoHeight autoHeightMin={0} autoHeightMax={400} style={{ width: 460}} >
-                          {this.state.cart.map((item, i) => {
+                          {cart.map((item, i) => {
                             return (
                               <div className="cart-single-items" key={`cart-item-${i}`}>
                                 <div className='row'>
@@ -100,7 +95,7 @@ class NavBar extends Component {
                                       className='btn cart-remove-btn' 
                                       type="button" 
                                       onClick={() => {
-                                        actions.removeFromCart();
+                                        cartActions.removeFromCart();
                                         }}
                                       >X</button>
                                   </div>
@@ -113,14 +108,14 @@ class NavBar extends Component {
                       <div className="checkout">
                         <p>
                           <Checkout
-                            emptyCart={this.emptyCart}
+                            cart={cart}
+                           /* emptyCart={this.emptyCart}
                             renterId={this.props.renterId}
-                            cart={this.state.cart}
                             label={'Check Out'}
                             name={'Hey there, hottie'}
                             description={'Trove'}
-                            amount={this.totalPrice(this.state.cart)} //in dollars
-                            length={this.state.cart.length}
+                            amount={this.totalPrice(cart)} //in dollars
+                            length={cart.length}*/
                           />
                         </p>
                       </div>
@@ -134,4 +129,19 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+
+const navBarState = (store) => {
+  return {
+    items: store.Item.items,
+    cart: store.Cart.cart
+  };
+};
+
+const navBarDispatch = (dispatch) => {
+  return {
+    searchActions: bindActionCreators(searchActions, dispatch),
+    cartActions: bindActionCreators(cartActions, dispatch)
+  }
+}
+
+export default connect(navBarState, navBarDispatch)(NavBar);
