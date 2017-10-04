@@ -7,16 +7,7 @@ import moment from 'moment';
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cart: this.props.cart
-    }
-    this.emptyCart = this.emptyCart.bind(this);
   }
-  
-  // componentDidMount() {
-  //   this.setState
-  // }
-  
 
   totalPrice(cart) {
     var totalPrice = 0;
@@ -24,12 +15,6 @@ class NavBar extends Component {
       totalPrice += cart[i].price;
     }
     return Math.floor(totalPrice * 0.07);
-  }
-
-  emptyCart() {
-    this.setState({
-      cart: []
-    });
   }
 
   render() {
@@ -97,7 +82,13 @@ class NavBar extends Component {
                                     <div className='cart-item-price'>${Math.floor(item.price * 0.07)}</div>
                                   </div>
                                   <div className='col-sm-1'>
-                                    <button id="checkout" className='btn cart-remove-btn' type="button" onClick={() => this.props.remove(item.id)}>X</button>
+                                    <button id="checkout" 
+                                      className='btn cart-remove-btn' 
+                                      type="button" 
+                                      onClick={() => {
+                                        actions.removeFromCart();
+                                        }}
+                                      >X</button>
                                   </div>
                                 </div>
                               </div>
