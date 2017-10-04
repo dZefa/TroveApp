@@ -30,3 +30,15 @@ export const fetchUser = () => {
     })
   }
 }
+
+export const fetchItems = () => {
+  return function(dispatch) {
+    axios.get('/api')
+      .then(items => {
+        dispatch({type: 'FETCH_ITEMS_FULFILLED', payload: items.data});
+      })
+      .catch(err => {
+        dispatch({type: 'FETCH_ITEMS_REJECTED', payload: err});
+      });
+  }
+}
