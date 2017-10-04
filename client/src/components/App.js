@@ -138,24 +138,24 @@ class App extends Component {
     const confPw = document.getElementById('confPw').value;
 
     if (newPw === confPw) {
-      auth.createUserWithEmailAndPassword(newEmail, newPw)
-        .then((result) => {
-          console.log('signed up')
-          axios.post('/api/user', {
-            userName: newName,
-            userEmail: newEmail
-          })
-          .then(({data}) => {
-            this.setState({
-              authenticated: true,
-              user: result,
-              sqlUser: data
-            })
-            alert('Account successfully created!')
-          })
-          .catch(err => alert(err.message));
-        })
-        .catch(err => alert(err.message));
+      // auth.createUserWithEmailAndPassword(newEmail, newPw)
+      //   .then((result) => {
+      //     console.log('signed up')
+      //     axios.post('/api/user', {
+      //       userName: newName,
+      //       userEmail: newEmail
+      //     })
+      //     .then(({data}) => {
+      //       this.setState({
+      //         authenticated: true,
+      //         user: result,
+      //         sqlUser: data
+      //       })
+      //       alert('Account successfully created!')
+      //     })
+      //     .catch(err => alert(err.message));
+      //   })
+      //   .catch(err => alert(err.message));
     } else {
       alert('Please make sure both passwords match');
     }
